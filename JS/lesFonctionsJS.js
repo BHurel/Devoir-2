@@ -1,15 +1,14 @@
-function AfficherCreation(idConference)
+function AfficherCreation()
 {
     $.ajax(
     {
         type:"get",
         url:"index.php/CtrlConferences/AfficherCreation",
-        data:"idConference="+idConference,
         success:function(data)
         {
-            $('#divNumeroConference').empty();
+            $('#divNumeroConference').append(data);
+            $('#divTitreConference').empty();
             $('#divContenuConference').empty();
-            $('#divFormations').append(data);
         },
         error:function()
         {
@@ -28,8 +27,6 @@ function AfficherConferences(idConference)
         success:function(data)
         {
             $('#divNumeroConference').empty();
-            $('#divAgents').empty();
-            $('#divFormations').append(data);
         },
         error:function()
         {
@@ -38,50 +35,44 @@ function AfficherConferences(idConference)
     }
     );
 }
-
-function AfficherAgents(idFormation)
+function AfficherTechnologies(idtechno)
 {
-    numF = idFormation;
     $.ajax(
     {
         type:"get",
-        url:"index.php/CtrlActivites/AfficherAgents",
-        data:"idFormation="+idFormation,
+        url:"index.php/CtrlConferences/AfficherTechnologies",
+        data:"idtechno="+idtechno,
         success:function(data)
         {
-            $('#divAgents').empty();
-            $('#divAgents').append(data);
+            $('#divTechnologies').empty();
         },
         error:function()
         {
-            alert('Erreur SQL');
+            alert('Erreur selection');
         }
     }
     );
 }
-function ValiderPresence()
+function ValiderChoixConf()
 {
-    
-    var tabCode = Array();
-    var tabPresence = Array();
+    var tabChoixConf = Array();
     $("input[type=checkbox]").each(function(){
-        tabCode.push($(this).val());
-        tabPresence.push($(this).is(":checked"));
+        tabChoixConf.push($(this).is(":checked"));
     });
 
 
     $.ajax(
         {
             type:"get",
-            url:"index.php/CtrlActivites/ValiderPresence",
-            data:"tab1="+tabCode+"&tab2="+tabPresence+"&numF="+numF,
+            url:"index.php/CtrlActivites/ChoixConf",
+            data:"tab1="+tabChoixConf,
             success:function(data)
             {
                 alert("OK");
             },
             error:function()
             {
-                alert('Erreur SQL');
+                alert('Erreur choix');
             }
         }
         );
