@@ -11,13 +11,13 @@
 </head>
 <body>
     <input type='text' value="Numéro de la conférence">
-    <input type='text' value='<?php echo $idConference->numero ; ?>
+    <input type='text' value='<?php echo $idConference->idConference ; ?>
     <input type='text' value="Titre de la conférence" disabled="disabled">
     <input type='text' value="">
     <br>
     <br>
     <input type='text' value="Contenu de la conférence" disabled="disabled">
-    <input type='text' value=''>
+    <input type='text' value="">
     <input type='text' value="Choix du niveau" disabled="disabled">
     <select id="lstNiveau" onchange="AfficherNiveau()"<br></select>
     <br>
